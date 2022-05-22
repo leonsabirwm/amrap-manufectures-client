@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react'
  const useToken = (user) => {
     const [token,setToken] = useState('');
     const email = user?.email;
-    console.log(user)
     useEffect(()=>{
         if(email){
             fetch(`http://localhost:5000/user/@${email}`,{

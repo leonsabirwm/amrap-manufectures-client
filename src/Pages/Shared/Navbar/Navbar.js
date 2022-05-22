@@ -2,7 +2,9 @@ import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Navbar = ({children}) => {
   const [user, loading, error] = useAuthState(auth);
@@ -20,7 +22,11 @@ export const Navbar = ({children}) => {
         </label>
       </div> 
       <div className="flex-1 text-3xl font-bold">AMRAP</div>
-      <p className='text-white'>{user?user.displayName:''}</p>
+      <div className='text-white'>{user?<div className="avatar online placeholder  mr-4">
+  <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+    <span className="text-xl">{user.displayName.substring(0,1)}</span>
+  </div>
+</div> :''}</div>
       <div className="flex-none hidden lg:block">
         <ul className="menu menu-horizontal ">
           {/* <!-- Navbar menu content here --> */}
@@ -34,6 +40,7 @@ export const Navbar = ({children}) => {
          }
         </ul>
       </div>
+      <ToastContainer />
     </div>
     {/* <!-- Page content here --> */}
     {children}

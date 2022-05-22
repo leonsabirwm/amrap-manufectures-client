@@ -1,28 +1,43 @@
 import axios from 'axios';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useForm } from 'react-hook-form';
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import auth from '../../firebase.init';
 import { Loading } from '../Shared/Loading/Loading';
 import './purchase.css'
 
 export const Purchase = () => {
-    
+    const [orderItem,setOrderItem] = useState({});
     const [user, loading, error] = useAuthState(auth);
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
     const id = useParams().id;
-    const {data,isLoading} = useQuery('parts',()=>{
-        return  axios.get(`http://localhost:5000/parts/${id}`);
-      })
-      const orderItem = data?.data;
+    useEffect(()=>{
+        fetch(`http://localhost:5000/parts/${id}`)
+        .then(res => res.json())
+        .then(data => setOrderItem(data));
+    },[])
+      const navigate = useNavigate();
       const{image,name,description,price,available,minimun}=orderItem;
-      console.log(orderItem);
-    const onSubmit = (data,event) =>{
+      const onSubmit = (data,event) =>{
         event.preventDefault();
-        if((data.quantity > available) || (data.quantity < minimun)){
+        const newAvailable = parseInt(available) - parseInt(data.quantity);
+        const order = {
+            product:name,
+            price,
+            quantity:data.quantity,
+            totalCost : parseInt(price) * parseInt(data.quantity),
+            client:user.displayName,
+            email:user.email,
+            phone:data.phone,
+            postCode:data.postCode,
+            address:data.address   
+        }
+        if((parseInt(data.quantity) > parseInt(available)) || (parseInt(data.quantity) < parseInt(minimun))){
+            
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...Invalid Quantity',
@@ -31,26 +46,51 @@ export const Purchase = () => {
                 confirmButtonColor: '#09aee6',
                 
               })
+              return;
         }
-        // console.log(data);
-        if(isLoading){
-            return <Loading></Loading>
+        else{
+            axios.post('http://localhost:5000/orders',order)
+            .then((response) => {
+                axios.patch(`http://localhost:5000/orders/${id}`,{available:newAvailable.toString()}).then((response) => {
+                    console.log('patch',response);
+                  }, (error) => {
+                    console.log(error);
+                  });
+                console.log(response);
+                
+                    toast.success(`Order Placed!!
+                    ID:${response.data.insertedId}`)
+                    reset();
+                    navigate('/');
+                
+              }, (error) => {
+                console.log(error);
+              });
         }
     }
-  return (
+    if(loading){
+        return <Loading></Loading>
+    }
+    return (
     <div>
         <div className="hero min-h-screen ">
   <div className="hero-content flex-col lg:flex-row">
     <img src={image} className="max-w-xs rounded-lg shadow-2xl" />
-    <div className='grid grid-cols-2 gap-4 lg:ml-36 text-lg font-medium'>
-    
-     <div>
-         <h1 className='p-12 rounded shadow-md bg-white'>{name}</h1>
-     </div>
-     <div><h2 className='p-12 rounded shadow-md bg-white'>Price : ${price}/unit</h2></div>
-     <div><h2 className='p-12 shadow-md bg-white'>Avaliable Quantity : {available}</h2></div>
-     <div><h2 className='p-12 rounded shadow-md bg-white'>Min Order Quantity : {minimun}</h2></div>
-    </div>
+   <div className='flex justify-center items-center flex-col lg:ml-36'>
+   <div className='grid grid-cols-2 gap-4  text-lg font-medium'>
+        <div>
+            <h1 className='p-12 rounded shadow-md bg-white'>{name}</h1>
+        </div>
+        <div><h2 className='p-12 rounded shadow-md bg-white'>Price : ${price}/unit</h2></div>
+        <div className=''><h2 className='p-12 shadow-md bg-white'>Avaliable Quantity : {available}</h2></div>
+        <div className=''><h2 className='p-12 rounded shadow-md bg-white'>Min Order Quantity : {minimun}</h2></div>
+        </div>
+        {/* description section */}
+        <div className='text-xl text-justify my-12 shadow-md p-12'>
+            <h2 className='text-center text-2xl font-medium'>Desciption</h2>
+            <p>{description}</p>
+        </div>
+   </div>
   </div>
 </div>
 
@@ -80,7 +120,10 @@ export const Purchase = () => {
   <label className="label">
     <span className="label-text">Quantity</span>
   </label>
-  <input type="number" placeholder='Insert Quantity' className="input input-bordered w-full max-w-xs" {...register("quantity")} />
+  <input type="number" placeholder='Insert Quantity' className="input input-bordered w-full max-w-xs" {...register("quantity",{ required: true })} />
+  <label className="label">
+    <span className="label-text-alt text-red-500">{errors.quantity?.type === 'required' && "Quantity is required"}</span>
+  </label>
 </div>
     <div className="form-control w-full max-w-xs">
   <label className="label">
