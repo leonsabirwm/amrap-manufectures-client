@@ -33,10 +33,11 @@ export const Navbar = ({children}) => {
          <Link className='text-lg font-medium' to="/">Home</Link>
          <Link className='mx-4 text-lg font-medium' to="/blogs">Blogs</Link>
          {
-           user? <button className='text-lg font-medium ' onClick={()=>{
+           user? <div> <Link className='mx-2 text-lg font-medium' to="/dashboard/myorders">Dashboard</Link> <button className='text-lg font-medium ' onClick={()=>{
             signOut(auth)
             localStorage.removeItem('access-token')
-           }}>Sign Out</button> : <Link className='text-lg font-medium ' to='/login'>Login</Link>
+           }}>Sign Out</button>
+           </div> : <Link className='text-lg font-medium ' to='/login'>Login</Link> 
          }
         </ul>
       </div>

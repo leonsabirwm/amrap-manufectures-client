@@ -8,6 +8,11 @@ import { Home } from './Pages/Home/Home';
 import { Blogs } from './Pages/Blogs/Blogs';
 import { Purchase } from './Pages/Purchase/Purchase';
 import { RequireAuth } from './Pages/Shared/RequireAuth/RequireAuth';
+import { Dashboard } from './Pages/Dashboard/Dashboard';
+import { MyOrders } from './Pages/Dashboard/MyOrders';
+import { AddReview } from './Pages/Dashboard/AddReview';
+import { MyProfile } from './Pages/Dashboard/MyProfile';
+import { DashboardSidebar } from './Pages/Dashboard/DashboardSidebar';
 
 
 function App() {
@@ -22,6 +27,11 @@ function App() {
             <Purchase></Purchase>
           </RequireAuth>
         }></Route>
+        <Route path="/dashboard" element={<Dashboard/>}>
+          <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
+          <Route path='addreview' element={<AddReview></AddReview>}></Route>
+          <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
+        </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
       </Routes>

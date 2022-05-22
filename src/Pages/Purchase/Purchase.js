@@ -28,6 +28,7 @@ export const Purchase = () => {
         const order = {
             product:name,
             price,
+            image,
             quantity:data.quantity,
             totalCost : parseInt(price) * parseInt(data.quantity),
             client:user.displayName,
