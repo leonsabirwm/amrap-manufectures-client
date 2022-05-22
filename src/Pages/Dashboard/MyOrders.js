@@ -9,18 +9,16 @@ import { MyOrder } from './MyOrder';
 export const MyOrders = ({}) => {
     const [user, loading, error] = useAuthState(auth);
     const email = user?.email;
-    console.log(email)
-    const{data:orders,isLoading} = useQuery('my-orders',()=>{
+    const{data:orders,isLoading,refetch} = useQuery('my-orders',()=>{
        return fetch(`http://localhost:5000/orders/${email}`).then(res=> res.json());
     })
-    console.log(orders);
     if(isLoading || loading){
         <Loading></Loading>
     }
   return (
     <div>
-       <div class="overflow-x-auto">
-  <table class="table w-full">
+       <div className="overflow-x-auto">
+  <table className="table w-full">
     {/* <!-- head --> */}
     <thead>
       <tr>
@@ -29,11 +27,12 @@ export const MyOrders = ({}) => {
         <th>Name</th>
         <th>Quantity</th>
         <th>Total Price</th>
-        <th>Payment</th>
+        
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
-   { orders?.map((order,index) => <MyOrder index={index} order={order} key={order._id}></MyOrder>)}      
+   { orders?.map((order,index) => <MyOrder refetch={refetch} index={index} order={order} key={order._id}></MyOrder>)}      
      
     </tbody>
   </table>

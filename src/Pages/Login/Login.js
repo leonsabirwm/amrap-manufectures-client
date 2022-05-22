@@ -34,38 +34,38 @@ export const Login = () => {
     }
   return (
     <div className='flex justify-center items-center my-8'>
-        <div class="card w-96 bg-base-100 shadow-xl">
-  <div class="card-body items-center text-center">
+        <div className="card w-96 bg-base-100 shadow-xl">
+  <div className="card-body items-center text-center">
  <h3 className='text-2xl font-bold'>Login</h3>
     <form onSubmit={handleSubmit(onSubmit)}>
 
     
-    <div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">Your Email</span>
+    <div className="form-control w-full max-w-xs">
+  <label className="label">
+    <span className="label-text">Your Email</span>
   </label>
-  <input type="text" placeholder="Enter your email" class="input input-bordered w-full max-w-xs" {...register("email")} />
+  <input type="text" placeholder="Enter your email" className="input input-bordered w-full max-w-xs" {...register("email")} />
  
 </div>
 
-    <div class="form-control w-full max-w-xs">
-  <label class="label">
-    <span class="label-text">Your Password</span>
+    <div className="form-control w-full max-w-xs">
+  <label className="label">
+    <span className="label-text">Your Password</span>
   </label>
-  <input type="text" placeholder="Enter your password" class="input input-bordered w-full max-w-xs"{...register("password")}  />
+  <input type="text" placeholder="Enter your password" className="input input-bordered w-full max-w-xs"{...register("password")}  />
   
 </div>
-    <div class="card-actions flex justify-center mt-4">
-      <button class="btn btn-primary w-full" type='submit'>Login</button>
+    <div className="card-actions flex justify-center mt-4">
+      <button className="btn btn-primary w-full" type='submit'>Login</button>
     </div>
     </form>
     <div>
         <p className='mt-2'>New to AMRAP? <Link className='text-primary font-medium' to='/signup'>Sign Up</Link></p>
     </div>
-  <div class="divider text-xl">OR</div>
+  <div className="divider text-xl">OR</div>
 
-    <div class="card-actions flex justify-center">
-      <button onClick={()=>signInWithGoogle()} class="btn btn-outline btn-primary w-full" type='submit'>Continue With Google</button>
+    <div className="card-actions flex justify-center">
+      <button onClick={()=>signInWithGoogle()} className="btn btn-outline btn-primary w-full" type='submit'>Continue With Google</button>
     </div>
   </div>
 </div>

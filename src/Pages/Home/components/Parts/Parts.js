@@ -18,7 +18,7 @@ export const Parts = () => {
     <div>
         <div className='grid grid-cols-1 lg:grid-cols-3 gap-12 mx-16'>
            {
-               parts?.map(part => <Part key={part._id} part={part}></Part>)
+               parts.slice(0,6)?.map(part => <Part key={part._id} part={part}></Part>)
            }
 
         </div>

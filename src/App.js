@@ -13,6 +13,8 @@ import { MyOrders } from './Pages/Dashboard/MyOrders';
 import { AddReview } from './Pages/Dashboard/AddReview';
 import { MyProfile } from './Pages/Dashboard/MyProfile';
 import { DashboardSidebar } from './Pages/Dashboard/DashboardSidebar';
+import { NotFound } from './Pages/Shared/NotFound';
+import { Portfolio } from './Pages/Portfolio/Portfolio';
 
 
 function App() {
@@ -34,6 +36,8 @@ function App() {
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
+        <Route path="/portfolio" element={<Portfolio></Portfolio>}></Route>
+      <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
       </Navbar>
     </div>

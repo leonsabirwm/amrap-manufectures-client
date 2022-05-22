@@ -1,0 +1,19 @@
+import React from 'react'
+
+export const Portfolio = () => {
+  return (
+    <div>
+        <div className='grid grid-cols-1 lg:grid-cols-2'>
+            <div>
+                <img src="https://img.freepik.com/free-vector/web-development-programmer-engineering-coding-website-augmented-reality-interface-screens-developer-project-engineer-programming-software-application-design-cartoon-illustration_107791-3863.jpg?w=740&t=st=1653250436~exp=1653251036~hmac=c376e08bb6639a3b9fbe8fca2ddd852b41a30fb85b9086c706f73a55a0c0ac69" alt="" />
+            </div>
+            <div className='flex flex-col justify-center items-left px-16 font-medium bg-gray-800/[.8]'>
+                <h2 className="text-5xl text-white text-left">A bolt-on developer to create your next project</h2>
+                <div className='text-left my-4'>
+                    <button className='btn btn-outline btn-primary '>My Works</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  )
+}
