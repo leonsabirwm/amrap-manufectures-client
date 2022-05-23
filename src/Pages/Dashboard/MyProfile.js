@@ -7,6 +7,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { useQuery } from 'react-query';
 import { async } from '@firebase/util';
+import { useAdmin } from '../../hooks/useAdmin';
 
 export const MyProfile = () => {
   const [user, loading, error] = useAuthState(auth);
@@ -14,8 +15,10 @@ export const MyProfile = () => {
   const [updateModal,setUpdateModal] = useState(false);
   const { register, formState: { errors }, handleSubmit,reset } = useForm();
     const email = user?.email;
+    const[admin] = useAdmin();
+    console.log(admin);
     
-    const {phone,education,address,linkdin} = profile;
+    const {phone,education,address,linkdin,role} = profile;
     useEffect(()=>{
         fetch(`http://localhost:5000/users/${email}`)
         .then(res => res.json())
@@ -59,12 +62,20 @@ export const MyProfile = () => {
     }
   return (
     <div>
-        <div className="card w-96 bg-base-100 shadow-xl">
-        <div className="avatar placeholder  flex items-center justify-center mt-8">
+        <div className="card flex flex-col items-center justify-center w-96 bg-base-100 shadow-xl">
+
+        {/* <div class="indicator "> */}
+  <div className="avatar placeholder indicator  flex items-center justify-center mt-8">
+    {
+        admin?  <span class="indicator-item badge badge-info"></span> : ''
+
+    }
   <div className="bg-neutral-focus ring ring-primary text-neutral-content rounded-full w-24">
     <span className="text-3xl text-white capitalize ">{user?.displayName.substring(0,1)}</span>
-  </div>
+  {/* </div> */}
 </div> 
+</div>
+       
   <div className="card-body items-center text-center">
     <h2 className="text-2xl font-medium capitalize">{user?.displayName}</h2>
     <small>{user?.email}</small>

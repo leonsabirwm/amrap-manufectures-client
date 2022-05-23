@@ -17,6 +17,8 @@ import { NotFound } from './Pages/Shared/NotFound';
 import { Portfolio } from './Pages/Portfolio/Portfolio';
 import { AddProduct } from './Pages/Dashboard/AddProduct';
 import { MakeAdmin } from './Pages/Dashboard/MakeAdmin';
+import { ManageProducts } from './Pages/Dashboard/ManageProducts';
+import { ManageOrders } from './Pages/Dashboard/ManageOrders';
 
 
 function App() {
@@ -37,6 +39,8 @@ function App() {
           <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
           <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
           <Route path='makeadmin' element={<MakeAdmin></MakeAdmin>}></Route>
+          <Route path='manageproducts' element={<ManageProducts></ManageProducts>}></Route>
+          <Route path='manageorders' element={<ManageOrders></ManageOrders>}></Route>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>
