@@ -15,6 +15,8 @@ import { MyProfile } from './Pages/Dashboard/MyProfile';
 import { DashboardSidebar } from './Pages/Dashboard/DashboardSidebar';
 import { NotFound } from './Pages/Shared/NotFound';
 import { Portfolio } from './Pages/Portfolio/Portfolio';
+import { AddProduct } from './Pages/Dashboard/AddProduct';
+import { MakeAdmin } from './Pages/Dashboard/MakeAdmin';
 
 
 function App() {
@@ -33,6 +35,8 @@ function App() {
           <Route path='myorders' element={<MyOrders></MyOrders>}></Route>
           <Route path='addreview' element={<AddReview></AddReview>}></Route>
           <Route path='myprofile' element={<MyProfile></MyProfile>}></Route>
+          <Route path='addproduct' element={<AddProduct></AddProduct>}></Route>
+          <Route path='makeadmin' element={<MakeAdmin></MakeAdmin>}></Route>
         </Route>
         <Route path="/login" element={<Login></Login>}></Route>
         <Route path="/signup" element={<SignUp></SignUp>}></Route>

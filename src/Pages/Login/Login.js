@@ -60,7 +60,7 @@ export const Login = () => {
     </div>
     </form>
     <div>
-        <p className='mt-2'>New to AMRAP? <Link className='text-primary font-medium' to='/signup'>Sign Up</Link></p>
+        <p className='mt-2 font-medium'>New to AMRAP? <Link className='text-primary font-medium' to='/signup'>Sign Up</Link></p>
     </div>
   <div className="divider text-xl">OR</div>
 

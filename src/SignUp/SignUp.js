@@ -20,8 +20,7 @@ export const SignUp = () => {
       const [updateProfile, updating, updateError] = useUpdateProfile(auth);
     const [user, loading, error] = useAuthState(auth);
 
-    console.log(user);
-    console.log(errors);
+    
     const onSubmit =async (data,event)=>{
         event.preventDefault();
         console.log(data);
@@ -78,7 +77,7 @@ export const SignUp = () => {
     </div>
     </form>
     <div>
-        <p className='mt-2'>Was here before? <Link className='text-primary font-medium' to='/login'>Login</Link></p>
+        <p className='mt-2 font-medium'>Was here before? <Link className='text-primary font-medium' to='/login'>Login</Link></p>
     </div>
   <div className="divider text-xl">OR</div>
 

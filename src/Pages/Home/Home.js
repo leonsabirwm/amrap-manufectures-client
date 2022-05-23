@@ -8,10 +8,10 @@ import { Reviews } from './components/Reviews/Reviews'
 export const Home = () => {
   return (
     <div>
-        <Parts></Parts>
-        <BusinessSum></BusinessSum>
-        <Reviews></Reviews>
         <Banner></Banner>
+        <BusinessSum></BusinessSum>
+        <Parts></Parts>
+        <Reviews></Reviews>
         <Footer></Footer>
     </div>
   )

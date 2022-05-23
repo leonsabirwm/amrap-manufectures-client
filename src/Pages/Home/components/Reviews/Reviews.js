@@ -7,7 +7,7 @@ import { ReviewCard } from './ReviewCard';
 export const Reviews = () => {
   const  {data:reviews} = useQuery('reviews',()=>axios.get('http://localhost:5000/reviews'))
   return (
-      <div className='pb-16 py-12 bg-base-200 p-12'>
+      <div className='pb-16 py-12 bg-base-200 my-16 p-12'>
            <div>
             <h3 className="text-4xl mb-8 text-left font-medium p-8">OUR Testimonials</h3>
         </div>

@@ -13,7 +13,7 @@ export const Part = ({part}) => {
     <h2 className="card-title">
       {name}
     </h2>
-    <p className='text-justify  text-gray-500 text-sm'>{description}</p>
+    <p className='text-justify  text-gray-500 text-sm'>{description?.slice(0,250)}{description?.length>250 ?<span>......Read More</span>:''}</p>
   </div>
   <div className=''>
       <button onClick={()=>navigate(`/parts/purchase/${part._id}`)} className='btn btn-outline btn-primary my-4'>Place Order</button>

@@ -19,8 +19,11 @@ export const MyProfile = () => {
     useEffect(()=>{
         fetch(`http://localhost:5000/users/${email}`)
         .then(res => res.json())
-        .then(data => setProfile(data));
-
+        .then(data => {
+            setProfile(data)
+            // console.log(data);
+        });
+        
     },[user])
 
    
@@ -37,7 +40,7 @@ export const MyProfile = () => {
         }
         setUpdateModal(false);
 
-        axios.put(`http://localhost:5000/users/update/${email}`,updation)
+        axios.patch(`http://localhost:5000/users/update/${email}`,updation)
         .then((response) => {
             reset();
             console.log(response);
@@ -77,7 +80,7 @@ export const MyProfile = () => {
     </div>
     <div className='text-left'>
         <small className='font-medium'>LinkdIN:</small>
-        <p>{linkdin}</p>
+       <a className='text-primary' rel="noreferrer" target="_blank" href={linkdin}> <p>{linkdin}</p></a>
     </div>
    </div>
     <div className="card-actions my-4">
