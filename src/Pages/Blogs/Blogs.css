@@ -32,10 +32,10 @@
 
 }
 #change-color{
-    color: rgba(9, 160, 160, 0.815);
+    color: rgba(22, 172, 209, 0.815);
 }
 .circle {
-    background: rgba(9, 160, 160, 0.815);
+    background:rgba(22, 172, 209, 0.815);
     clip-path: circle(50%);
     height: 12em;
     width: 12em;
@@ -59,8 +59,8 @@
         margin-top: 20px;
     }
     .circle{
-        height: 6em;
-    width: 6em;
+        height: 4em;
+    width: 4em;
     }
      
    }
