@@ -1,9 +1,11 @@
 import axios from 'axios';
 import React from 'react'
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 export const MyOrder = ({order,index,refetch}) => {
     const {_id,product,quantity,totalCost,payment,image} = order;
+    const navigate = useNavigate();
     const handleDelete=(id)=>{
         Swal.fire({
             title: 'Are you sure?',
@@ -50,9 +52,9 @@ export const MyOrder = ({order,index,refetch}) => {
         <td>{
             !payment?
             <div>
-            <button className='btn btn-xs btn-primary'>Pay</button>
+            <button className='btn btn-xs btn-primary' onClick={()=>navigate(`/dashboard/payment/${_id}`)}>Pay</button>
              <button className='btn ml-2 text-white border-0 btn-xs bg-red-500' onClick={()=>handleDelete(_id)}>Delete</button>
-            </div>:''
+            </div>:<p className='text-primary font-medium'>Paid</p>
             }
         
         </td>

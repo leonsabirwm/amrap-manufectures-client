@@ -25,12 +25,13 @@ export const Purchase = () => {
       const onSubmit = (data,event) =>{
         event.preventDefault();
         const newAvailable = parseInt(available) - parseInt(data.quantity);
+        const total = parseInt(price) * parseInt(data.quantity);
         const order = {
             product:name,
             price,
             image,
             quantity:data.quantity,
-            totalCost : parseInt(price) * parseInt(data.quantity),
+            totalCost : total.toString(),
             client:user.displayName,
             email:user.email,
             phone:data.phone,
