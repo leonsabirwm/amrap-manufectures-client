@@ -13,7 +13,9 @@ export const useAdmin = () => {
         .then(res => res.json())
         .then(data => {
             setAdmin(data.admin)
-            console.log(data);
+            // localStorage.setItem('role',data.admin)
+            // setAdmin(localStorage.getItem('role'))
+            // console.log(data);
          })
         
     }

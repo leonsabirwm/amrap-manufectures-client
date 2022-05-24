@@ -20,7 +20,13 @@ export const MyProfile = () => {
     
     const {phone,education,address,linkdin,role} = profile;
     useEffect(()=>{
-        fetch(`http://localhost:5000/users/${email}`)
+        fetch(`http://localhost:5000/users/${email}`,{
+            headers: {
+                'Content-Type': 'application/json',
+                'authorization':`Bearer ${localStorage.getItem('access-token')}`
+            }
+    
+           })
         .then(res => res.json())
         .then(data => {
             setProfile(data)
@@ -64,10 +70,10 @@ export const MyProfile = () => {
     <div>
         <div className="card flex flex-col items-center justify-center w-96 bg-base-100 shadow-xl">
 
-        {/* <div class="indicator "> */}
+        {/* <div className="indicator "> */}
   <div className="avatar placeholder indicator  flex items-center justify-center mt-8">
     {
-        admin?  <span class="indicator-item badge badge-info"></span> : ''
+        admin?  <span className="indicator-item badge badge-info"></span> : ''
 
     }
   <div className="bg-neutral-focus ring ring-primary text-neutral-content rounded-full w-24">

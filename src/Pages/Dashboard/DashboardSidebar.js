@@ -1,9 +1,16 @@
-import React from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { signOut } from 'firebase/auth';
+import React, { useEffect } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
+
 import { useAdmin } from './../../hooks/useAdmin';
 
 export const DashboardSidebar = ({children}) => {
     const [admin] = useAdmin();
+
+   
+
+    
   return (
     <div >
         
@@ -23,11 +30,11 @@ export const DashboardSidebar = ({children}) => {
     
     { !admin ? <li><NavLink to='/dashboard/myorders'>My Orders</NavLink></li> :""}
     { !admin ? <li><NavLink className='my-4' to='/dashboard/addreview'>Add a review</NavLink></li>:""}
-     <li><NavLink to='/dashboard/myprofile'>My Profile</NavLink></li>
+    { admin ? <li><NavLink to='/dashboard/manageorders'>Manage Orders</NavLink></li> : ''}
+    { admin ? <li><NavLink to='/dashboard/manageproducts'>Manage Products</NavLink></li> : ''}
     { admin ? <li><NavLink to='/dashboard/addproduct'>Add a Product</NavLink></li> : ''}
     { admin ? <li><NavLink to='/dashboard/makeadmin'>Make Admin</NavLink></li> : ''}
-    { admin ? <li><NavLink to='/dashboard/manageproducts'>Manage Products</NavLink></li> : ''}
-    { admin ? <li><NavLink to='/dashboard/manageorders'>Manage Orders</NavLink></li> : ''}
+     <li><NavLink to='/dashboard/myprofile'>My Profile</NavLink></li>
     
     </ul>
   

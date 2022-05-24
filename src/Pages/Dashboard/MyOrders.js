@@ -10,8 +10,9 @@ export const MyOrders = ({}) => {
     const [user, loading, error] = useAuthState(auth);
     const email = user?.email;
     const{data:orders,isLoading,refetch} = useQuery('my-orders',()=>{
-       return fetch(`http://localhost:5000/orders/${email}`).then(res=> res.json());
+       return axios.get(`http://localhost:5000/orders/${email}`);
     })
+    console.log(orders?.data)
     if(isLoading || loading){
         <Loading></Loading>
     }
@@ -32,7 +33,7 @@ export const MyOrders = ({}) => {
       </tr>
     </thead>
     <tbody>
-   { orders?.map((order,index) => <MyOrder refetch={refetch} index={index} order={order} key={order._id}></MyOrder>)}      
+   { orders?.data?.map((order,index) => <MyOrder refetch={refetch} index={index} order={order} key={order._id}></MyOrder>)}      
      
     </tbody>
   </table>

@@ -11,7 +11,17 @@ import {
   QueryClient,
   QueryClientProvider,
 } from 'react-query'
+import axios from 'axios';
 const queryClient = new QueryClient();
+
+
+
+axios.interceptors.request.use(request=>{
+  request.headers = {
+         authorization:`Bearer ${localStorage.getItem('access-token')}`
+  }
+  return request;
+})
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

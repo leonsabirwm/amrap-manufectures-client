@@ -9,7 +9,13 @@ export const ManageOrders = () => {
     const [user, loading, error] = useAuthState(auth);
     const email = user?.email;
     const{data:orders,isLoading,refetch} = useQuery('admin-orders',()=>{
-       return fetch(`http://localhost:5000/orders`).then(res=> res.json());
+       return fetch(`http://localhost:5000/orders`,{
+        headers: {
+            'Content-Type': 'application/json',
+            'authorization':`Bearer ${localStorage.getItem('access-token')}`
+        }
+
+       }).then(res=> res.json());
     })
     if(isLoading || loading){
         <Loading></Loading>

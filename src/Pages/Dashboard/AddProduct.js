@@ -20,8 +20,10 @@ export const AddProduct = () => {
         const formData = new FormData();
         formData.append('image',image);
         setProductLoading(true)
+        const uninterceptedAxiosInstance = axios.create();
+        
         const url = `https://api.imgbb.com/1/upload?key=${imageUploadKey}`
-        axios.post(url,formData, {
+        uninterceptedAxiosInstance.post(url,formData, {
             headers: {
               'Content-Type': 'multipart/form-data'
             }
