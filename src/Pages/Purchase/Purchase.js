@@ -13,7 +13,8 @@ import './purchase.css'
 export const Purchase = () => {
     const [orderItem,setOrderItem] = useState({});
     const [user, loading, error] = useAuthState(auth);
-    const { register, formState: { errors }, handleSubmit,reset } = useForm();
+    const [valid,setValid]=useState(true);
+    const { register, formState: { errors }, handleSubmit,reset,watch } = useForm();
     const id = useParams().id;
     useEffect(()=>{
         fetch(`http://localhost:5000/parts/${id}`)
@@ -22,6 +23,19 @@ export const Purchase = () => {
     },[])
       const navigate = useNavigate();
       const{image,name,description,price,available,minimun}=orderItem;
+    //   setValid(watch('quantity'))
+    const validAmount = watch('quantity');
+      console.log(typeof validAmount);
+      useEffect(()=>{
+        if(((parseInt(validAmount))<parseInt(minimun))||(parseInt(validAmount))>parseInt(available)){
+            setValid(false);
+              
+          }
+          else{
+              setValid(true);
+          }
+      },[validAmount])
+      
       const onSubmit = (data,event) =>{
         event.preventDefault();
         const newAvailable = parseInt(available) - parseInt(data.quantity);
@@ -122,9 +136,10 @@ export const Purchase = () => {
   <label className="label">
     <span className="label-text">Quantity</span>
   </label>
-  <input type="number" placeholder='Insert Quantity' className="input input-bordered w-full max-w-xs" {...register("quantity",{ required: true })} />
+  <input type="number" name='quantity' placeholder='Insert Quantity' className="input input-bordered w-full max-w-xs" {...register("quantity",{ required: true })} />
+   
   <label className="label">
-    <span className="label-text-alt text-red-500">{errors.quantity?.type === 'required' && "Quantity is required"}</span>
+    <span className="label-text-alt text-red-500">{(errors.quantity?.type === 'required' && "Quantity is required")||(!valid && "Insert a quantity between min and available")}</span>
   </label>
 </div>
     <div className="form-control w-full max-w-xs">
@@ -156,7 +171,7 @@ export const Purchase = () => {
 </div>
 
     <div className="card-actions flex justify-center mt-4">
-      <button className="btn btn-primary w-full" type='submit'>Place Order</button>
+      <button disabled={!valid} className="btn btn-primary w-full" type='submit'>Place Order</button>
     </div>
     </form>
   </div>

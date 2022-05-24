@@ -1,6 +1,7 @@
 import React from 'react'
 import { Aboutme } from './Aboutme/Aboutme'
 import { Education } from './Aboutme/Education'
+import { Technologies } from './Aboutme/Technologies'
 import { MyWorks } from './MyWorks'
 
 export const Portfolio = () => {
@@ -22,6 +23,7 @@ export const Portfolio = () => {
         </div>
         <Education></Education>
         <MyWorks></MyWorks>
+        <Technologies></Technologies>
     </div>
   )
 }
