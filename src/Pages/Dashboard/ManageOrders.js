@@ -1,9 +1,41 @@
 import React from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useQuery } from 'react-query';
+import auth from '../../firebase.init';
+import { Loading } from '../Shared/Loading/Loading';
+import { ManageOrder } from './ManageOrder';
 
 export const ManageOrders = () => {
+    const [user, loading, error] = useAuthState(auth);
+    const email = user?.email;
+    const{data:orders,isLoading,refetch} = useQuery('admin-orders',()=>{
+       return fetch(`http://localhost:5000/orders`).then(res=> res.json());
+    })
+    if(isLoading || loading){
+        <Loading></Loading>
+    }
   return (
     <div>
-        <h2 className="text-3xl">Here an admin can manage orders</h2>
+       <div className="overflow-x-auto">
+  <table className="table w-full">
+    {/* <!-- head --> */}
+    <thead>
+      <tr>
+        <th></th>
+        <th>Image</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Payment</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+   { orders?.map((order,index) => <ManageOrder refetch={refetch} index={index} order={order} key={order._id}></ManageOrder>)}      
+     
+    </tbody>
+  </table>
+</div>
     </div>
   )
 }

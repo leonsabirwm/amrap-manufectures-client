@@ -3,9 +3,26 @@ import React from 'react'
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 
-export const MyOrder = ({order,index,refetch}) => {
+export const ManageOrder = ({order,index,refetch}) => {
     const {_id,product,quantity,totalCost,payment,image,shipped} = order;
     const navigate = useNavigate();
+    const handleProceed = (id)=>{
+        axios.patch(`http://localhost:5000/order/proceed/${id}`)
+        .then((response) => {
+            console.log(response);
+           if(response.data.acknowledged){
+            refetch();
+            Swal.fire(
+                'Added!',
+                'Product has been addeded to shipping queue.',
+                'success'
+              )
+           }
+            
+          }, (error) => {
+            console.log(error);
+          });
+    }
     const handleDelete=(id)=>{
         Swal.fire({
             title: 'Are you sure?',
@@ -48,20 +65,35 @@ export const MyOrder = ({order,index,refetch}) => {
 </div></th>
         <td>{product}</td>
         <td>{quantity}</td>
-        <td>{totalCost}</td>
+        <td>{
+        payment?
+        <p className='text-green-500 font-medium'>Paid</p>
+        :
+        <p className='text-red-500 font-medium'>Unpaid</p>
+
+        
+    }</td>
         <td>
         {!shipped?
-         <p className='text-primary font-medium'>Processing</p>
+         <p className='text-primary font-medium'>Pending</p>
          :
          <p className='text-green-500 font-medium'>Shipped</p>
 }
         </td>
         <td>{
             !payment?
-            <div>
-            <button className='btn btn-xs btn-primary' onClick={()=>navigate(`/dashboard/payment/${_id}`)}>Pay</button>
+            <div className='flex justify-center items-center'>
+
              <button className='btn ml-2 text-white border-0 btn-xs bg-red-500' onClick={()=>handleDelete(_id)}>Delete</button>
-            </div>:<p className='text-primary font-medium'>Paid</p>
+            </div>:<div className='flex justify-center items-center'>
+            
+             {
+                 shipped?'':<button className='btn ml-2 text-white border-0 btn-xs bg-green-500' onClick={()=>handleProceed(_id)}>Proceed</button>
+             }
+            </div>
+            
+            
+            
             }
         
         </td>

@@ -27,7 +27,7 @@ export const MyOrders = ({}) => {
         <th>Name</th>
         <th>Quantity</th>
         <th>Total Price</th>
-        
+        <th>Status</th>
         <th>Action</th>
       </tr>
     </thead>

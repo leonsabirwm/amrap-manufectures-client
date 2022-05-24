@@ -5,9 +5,12 @@ import { Link } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import 'react-toastify/dist/ReactToastify.css';
+import { useAdmin } from '../../../hooks/useAdmin';
 
 export const Navbar = ({children}) => {
   const [user, loading, error] = useAuthState(auth);
+  const [admin] = useAdmin();
+  
  
   return (
     <div>
@@ -39,7 +42,7 @@ export const Navbar = ({children}) => {
          <Link className='text-lg font-medium ml-4' to="/portfolio">Portfolio</Link>
          <Link className='mx-4 text-lg font-medium' to="/blogs">Blogs</Link>
          {
-           user? <div> <Link className='mx-2 text-lg font-medium' to="/dashboard/myorders">Dashboard</Link> <button className='text-lg font-medium ' onClick={()=>{
+           user? <div> <Link className='mx-2 text-lg font-medium' to={admin?'/dashboard/manageproducts':'/dashboard/myorders'}>Dashboard</Link> <button className='text-lg font-medium ' onClick={()=>{
             signOut(auth)
             localStorage.removeItem('access-token')
            }}>Sign Out</button>
