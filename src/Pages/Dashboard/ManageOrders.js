@@ -22,8 +22,8 @@ export const ManageOrders = () => {
     }
   return (
     <div>
-       <div className="overflow-x-auto">
-  <table className="table w-full">
+       <div className="overflow-x-scroll">
+  <table className="table w-full ">
     {/* <!-- head --> */}
     <thead >
       <tr>

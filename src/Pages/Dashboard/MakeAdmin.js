@@ -10,8 +10,8 @@ export const MakeAdmin = () => {
     const {data:users,isLoading,refetch} = useQuery('my-users',()=>axios.get("https://infinite-escarpment-22015.herokuapp.com/users"))
   return (
     <div>
+       <div className="overflow-x-auto scale-75 lg:scale-90">
         <div>
-       <div className="overflow-x-auto">
   <table className="table w-full">
     {/* <!-- head --> */}
     <thead>

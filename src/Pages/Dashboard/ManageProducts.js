@@ -6,8 +6,8 @@ import { useQuery } from 'react-query';
 export const ManageProducts = () => {
     const {data:products,refetch} = useQuery('all-products',()=>axios.get('https://infinite-escarpment-22015.herokuapp.com/parts'))
   return (
-    <div>
        <div className="overflow-x-auto">
+    <div>
   <table className="table w-full">
     {/* <!-- head --> */}
     <thead>

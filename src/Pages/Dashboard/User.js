@@ -44,7 +44,7 @@ export const User = ({user,refetch}) => {
         <td className=' font-medium'>{email}</td>
         <td className='capitalize font-medium'>{role?role:"user"}</td>
         <td>{
-            role==="admin"?" ":<button className='btn btn-xs btn-primary' onClick={handleMakeAdmin}>Make Admin</button>
+            role==="admin"?" ":<button className='btn btn-xs btn-primary' onClick={handleMakeAdmin}>Appoint</button>
             }</td>
     </tr>
 

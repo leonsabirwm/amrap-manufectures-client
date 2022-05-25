@@ -6,7 +6,7 @@ export const ReviewCard = ({review}) => {
   return (
     <div>
        
-        <div className="card h-full w-96 bg-base-100 shadow-xl">
+        <div className="card h-full bg-base-100 shadow-xl">
   <div className="card-body flex flex-row justify-left items-center" >
   <div className="avatar placeholder">
   <div className="bg-neutral-focus text-neutral-content rounded-full h-16 w-16">

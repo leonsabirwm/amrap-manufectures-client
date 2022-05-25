@@ -22,12 +22,12 @@ export const Purchase = () => {
         .then(data => setOrderItem(data));
     },[])
       const navigate = useNavigate();
-      const{image,name,description,price,available,minimun}=orderItem;
+      const{image,name,description,price,available,minimum}=orderItem;
     //   setValid(watch('quantity'))
     const validAmount = watch('quantity');
       console.log(typeof validAmount);
       useEffect(()=>{
-        if(((parseInt(validAmount))<parseInt(minimun))||(parseInt(validAmount))>parseInt(available)){
+        if(((parseInt(validAmount))<parseInt(minimum))||(parseInt(validAmount))>parseInt(available)){
             setValid(false);
               
           }
@@ -52,7 +52,7 @@ export const Purchase = () => {
             postCode:data.postCode,
             address:data.address   
         }
-        if((parseInt(data.quantity) > parseInt(available)) || (parseInt(data.quantity) < parseInt(minimun))){
+        if((parseInt(data.quantity) > parseInt(available)) || (parseInt(data.quantity) < parseInt(minimum))){
             
             Swal.fire({
                 icon: 'error',
@@ -95,11 +95,11 @@ export const Purchase = () => {
    <div className='flex justify-center items-center flex-col lg:ml-36'>
    <div className='grid grid-cols-2 gap-4  text-lg font-medium'>
         <div>
-            <h1 className='p-12 rounded shadow-md bg-white'>{name}</h1>
+            <h1 className='p-12 h-full rounded shadow-md bg-white'>{name}</h1>
         </div>
         <div><h2 className='p-12 rounded shadow-md bg-white'>Price : ${price}/unit</h2></div>
-        <div className=''><h2 className='p-12 shadow-md bg-white'>Avaliable Quantity : {available}</h2></div>
-        <div className=''><h2 className='p-12 rounded shadow-md bg-white'>Min Order Quantity : {minimun}</h2></div>
+        <div className=''><h2 className='p-12 h-full shadow-md bg-white'>Avaliable Quantity : {available}</h2></div>
+        <div className=''><h2 className='p-12 rounded shadow-md bg-white'>Min Order Quantity : {minimum}</h2></div>
         </div>
         {/* description section */}
         <div className='text-xl text-justify my-12 shadow-md p-12'>

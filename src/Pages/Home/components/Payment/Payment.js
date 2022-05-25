@@ -13,6 +13,7 @@ export const Payment = () => {
     const [order,setOrder] = useState({});
     const {id} = useParams();
     // const {data:order,isLoading} = useQuery(['orders',id],()=>fetch(`https://infinite-escarpment-22015.herokuapp.com/order/${id}`).then(res =>res.json()));
+    
     useEffect(()=>{
         fetch(`https://infinite-escarpment-22015.herokuapp.com/order/${id}`)
         .then(res =>res.json())
