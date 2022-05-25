@@ -1,11 +1,12 @@
 import { signOut } from 'firebase/auth';
 import React from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
 import 'react-toastify/dist/ReactToastify.css';
 import { useAdmin } from '../../../hooks/useAdmin';
+import { MdDashboardCustomize } from "react-icons/md";
 
 export const Navbar = ({children}) => {
   const [user, loading, error] = useAuthState(auth);
@@ -28,16 +29,18 @@ export const Navbar = ({children}) => {
         <h3 className='text-left font-bold text-3xl'>AMRAP</h3>
         <p className='text-left font-medium'>Manufactures</p>
         </div></div>
-      <Link to='/dashboard/myprofile'>
+        <label htmlFor="my-drawer-2" className="btn text-3xl text-white btn-ghost drawer-button lg:hidden"><MdDashboardCustomize></MdDashboardCustomize></label>
+
+      <div className="flex-none hidden lg:block">
+        <ul className="menu menu-horizontal flex justify-center items-center text-white">
+          {/* <!-- Navbar menu content here --> */}
+          <Link to='/dashboard/myprofile' className=''>
       <div className='text-white'>{user?<div className="avatar online placeholder  mr-4">
   <div className="bg-sky-500 text-neutral-content rounded-full w-12">
     <span className="text-xl text-black capitalize">{user.displayName.substring(0,1)}</span>
   </div>
 </div> :''}</div>
 </Link>
-      <div className="flex-none hidden lg:block">
-        <ul className="menu menu-horizontal text-white">
-          {/* <!-- Navbar menu content here --> */}
          <Link className='text-lg font-medium' to="/">Home</Link>
          <Link className='text-lg font-medium ml-4' to="/portfolio">Portfolio</Link>
          <Link className='mx-4 text-lg font-medium' to="/blogs">Blogs</Link>
@@ -57,10 +60,21 @@ export const Navbar = ({children}) => {
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-3" className="drawer-overlay"></label> 
-    <ul className="menu p-4 overflow-y-auto w-80 bg-base-100">
+    <ul className="menu flex flex-col items-start p-4 overflow-y-auto w-80 bg-base-100">
       {/* <!-- Sidebar content here --> */}
-      <li><a>Sidebar Item 1</a></li>
-      <li><a>Sidebar Item 2</a></li>
+      <NavLink className='text-lg font-medium' to="/">Home</NavLink>
+         <Link className='text-lg font-medium' to="/portfolio">Portfolio</Link>
+         <Link className=' text-lg font-medium' to="/blogs">Blogs</Link>
+         <Link className='text-lg font-medium' to="/dashboard/myprofile">My Profile</Link>
+         {
+           user? <div className='flex items-start flex-col'> <Link className='text-lg font-medium' to={admin?'/dashboard/manageorders':'/dashboard/myorders'}>Dashboard</Link> <button className='text-lg font-medium ' onClick={()=>{
+            signOut(auth)
+            localStorage.removeItem('access-token')
+           }}>Sign Out</button>
+           </div> : <Link className='text-lg font-medium ' to='/login'>Login</Link>
+           
+          }
+         
       
     </ul>
     
