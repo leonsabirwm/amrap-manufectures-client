@@ -9,7 +9,7 @@ export const ManageOrders = () => {
     const [user, loading, error] = useAuthState(auth);
     const email = user?.email;
     const{data:orders,isLoading,refetch} = useQuery('admin-orders',()=>{
-       return fetch(`http://localhost:5000/orders`,{
+       return fetch(`https://infinite-escarpment-22015.herokuapp.com/orders`,{
         headers: {
             'Content-Type': 'application/json',
             'authorization':`Bearer ${localStorage.getItem('access-token')}`

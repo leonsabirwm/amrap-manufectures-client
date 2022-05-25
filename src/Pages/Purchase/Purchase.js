@@ -17,7 +17,7 @@ export const Purchase = () => {
     const { register, formState: { errors }, handleSubmit,reset,watch } = useForm();
     const id = useParams().id;
     useEffect(()=>{
-        fetch(`http://localhost:5000/parts/${id}`)
+        fetch(`https://infinite-escarpment-22015.herokuapp.com/parts/${id}`)
         .then(res => res.json())
         .then(data => setOrderItem(data));
     },[])
@@ -65,9 +65,9 @@ export const Purchase = () => {
               return;
         }
         else{
-            axios.post('http://localhost:5000/orders',order)
+            axios.post('https://infinite-escarpment-22015.herokuapp.com/orders',order)
             .then((response) => {
-                axios.patch(`http://localhost:5000/orders/${id}`,{available:newAvailable.toString()}).then((response) => {
+                axios.patch(`https://infinite-escarpment-22015.herokuapp.com/orders/${id}`,{available:newAvailable.toString()}).then((response) => {
                     console.log('patch',response);
                   }, (error) => {
                     console.log(error);

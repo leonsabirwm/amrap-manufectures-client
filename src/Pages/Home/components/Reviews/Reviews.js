@@ -5,7 +5,7 @@ import { useQuery } from 'react-query';
 import { ReviewCard } from './ReviewCard';
 
 export const Reviews = () => {
-  const  {data:reviews} = useQuery('reviews',()=>axios.get('http://localhost:5000/reviews'))
+  const  {data:reviews} = useQuery('reviews',()=>axios.get('https://infinite-escarpment-22015.herokuapp.com/reviews'))
   return (
       <div className='pb-16 py-12 bg-base-200 my-16 p-12'>
            <div>

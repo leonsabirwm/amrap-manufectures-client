@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form';import { useAuthState, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
@@ -8,15 +8,16 @@ import useToken from '../../hooks/useToken';
 export const Login = () => {
     const navigate = useNavigate();
     const { register, formState: { errors }, handleSubmit,reset } = useForm();
+    const [generalError,setGeneralError] = useState('');
     const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
     const [
         signInWithEmailAndPassword,
         ,
         ,
-        ,
+        error,
       ] = useSignInWithEmailAndPassword(auth);
     console.log(errors);
-    const [user, loading, error] = useAuthState(auth);
+    const [user, loading] = useAuthState(auth);
     const onSubmit = (data,event)=>{
         event.preventDefault();
         console.log(data);
@@ -27,11 +28,27 @@ export const Login = () => {
     useEffect(()=>{
         if(token){
             navigate('/');
+            setGeneralError('');
         }
     })
+    useEffect(()=>{
+        if(error||gError){
+            console.log(error.code||gError);
+            if(error.code === 'auth/user-not-found'){
+                setGeneralError(`User Not Found!!`);
+            }
+            if(error.code ==='auth/wrong-password'){
+                setGeneralError("Wrong Password!!")
+            }
+            if(!(error.code === 'auth/user-not-found'||'auth/wrong-password')){
+                setGeneralError('Somthing Went Wrong!!')
+            }
+        }
+       },[error,gError]);
     if(loading || gLoading){
         return <Loading></Loading>
     }
+  
   return (
     <div className='flex justify-center items-center my-8'>
         <div className="card w-96 bg-base-100 shadow-xl">
@@ -54,7 +71,9 @@ export const Login = () => {
   </label>
   <input type="text" placeholder="Enter your password" className="input input-bordered w-full max-w-xs"{...register("password")}  />
   
+    <small className='text-red-500 font-medium mt-4'>{generalError}</small>
 </div>
+
     <div className="card-actions flex justify-center mt-4">
       <button className="btn btn-primary w-full" type='submit'>Login</button>
     </div>

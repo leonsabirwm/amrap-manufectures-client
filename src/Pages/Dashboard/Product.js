@@ -17,7 +17,7 @@ export const Product = ({product,refetch,index}) => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/parts/${_id}`)
+                axios.delete(`https://infinite-escarpment-22015.herokuapp.com/parts/${_id}`)
                 .then((response) => {
                     console.log(response);
                     

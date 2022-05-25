@@ -7,7 +7,7 @@ export const MakeAdmin = () => {
     // const [users,setUsers] = useState([]);
     
 
-    const {data:users,isLoading,refetch} = useQuery('my-users',()=>axios.get("http://localhost:5000/users"))
+    const {data:users,isLoading,refetch} = useQuery('my-users',()=>axios.get("https://infinite-escarpment-22015.herokuapp.com/users"))
   return (
     <div>
         <div>

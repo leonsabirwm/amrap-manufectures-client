@@ -20,7 +20,7 @@ export const MyProfile = () => {
     
     const {phone,education,address,linkdin,role} = profile;
     useEffect(()=>{
-        fetch(`http://localhost:5000/users/${email}`,{
+        fetch(`https://infinite-escarpment-22015.herokuapp.com/users/${email}`,{
             headers: {
                 'Content-Type': 'application/json',
                 'authorization':`Bearer ${localStorage.getItem('access-token')}`
@@ -49,7 +49,7 @@ export const MyProfile = () => {
         }
         setUpdateModal(false);
 
-        axios.patch(`http://localhost:5000/users/update/${email}`,updation)
+        axios.patch(`https://infinite-escarpment-22015.herokuapp.com/users/update/${email}`,updation)
         .then((response) => {
             reset();
             console.log(response);

@@ -4,7 +4,7 @@ import { Product } from './Product';
 import { useQuery } from 'react-query';
 
 export const ManageProducts = () => {
-    const {data:products,refetch} = useQuery('all-products',()=>axios.get('http://localhost:5000/parts'))
+    const {data:products,refetch} = useQuery('all-products',()=>axios.get('https://infinite-escarpment-22015.herokuapp.com/parts'))
   return (
     <div>
        <div className="overflow-x-auto">

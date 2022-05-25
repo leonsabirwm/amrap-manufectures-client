@@ -40,7 +40,7 @@ export const AddProduct = () => {
                 description:data.description,
                 image:photoURL,
             }
-            axios.post('http://localhost:5000/parts',product)
+            axios.post('https://infinite-escarpment-22015.herokuapp.com/parts',product)
             .then((response) => {
                 const added = response.data.acknowledged;
 

@@ -12,9 +12,9 @@ const stripePromise = loadStripe('pk_test_51L2r9rJavDy2cmWjYWjdlD6Qa8Ml9j4CdGxys
 export const Payment = () => {
     const [order,setOrder] = useState({});
     const {id} = useParams();
-    // const {data:order,isLoading} = useQuery(['orders',id],()=>fetch(`http://localhost:5000/order/${id}`).then(res =>res.json()));
+    // const {data:order,isLoading} = useQuery(['orders',id],()=>fetch(`https://infinite-escarpment-22015.herokuapp.com/order/${id}`).then(res =>res.json()));
     useEffect(()=>{
-        fetch(`http://localhost:5000/order/${id}`)
+        fetch(`https://infinite-escarpment-22015.herokuapp.com/order/${id}`)
         .then(res =>res.json())
         .then(data => setOrder(data));
     },[id])

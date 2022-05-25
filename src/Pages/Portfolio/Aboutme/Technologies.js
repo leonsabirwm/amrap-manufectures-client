@@ -4,6 +4,7 @@ import { FaReact,FaNodeJs,FaClipboardList,FaCcStripe } from "react-icons/fa";
 import { GiDaisy } from "react-icons/gi";
 import { SiMongodb,SiExpress,SiFirebase,SiTailwindcss,SiJsonwebtokens } from "react-icons/si";
 import { CgArrowsExchangeAlt } from "react-icons/cg";
+import { DiHeroku } from "react-icons/di";
 export const Technologies = () => {
   return (
     <div>
@@ -33,8 +34,8 @@ export const Technologies = () => {
   
   
   <div className="flex flex-col justify-center items-center">
-    <div className="text-5xl text-green-700"><FaNodeJs></FaNodeJs></div>
-    <div className="text-xl font-medium">Node JS</div>
+    <div className="text-5xl text-purple-500"><DiHeroku></DiHeroku></div>
+    <div className="text-xl font-medium">Heroku</div>
   </div>
   <div className="flex flex-col justify-center items-center ">
     <div className="text-5xl text-pink-600"><FaClipboardList></FaClipboardList></div>

@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react'
     const name = user?.displayName;
     useEffect(()=>{
         if(email){
-            fetch(`http://localhost:5000/user/${email}`,{
+            fetch(`https://infinite-escarpment-22015.herokuapp.com/user/${email}`,{
             method:"PUT",
             headers: {
                 'Content-Type': 'application/json'

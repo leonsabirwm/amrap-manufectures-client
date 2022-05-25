@@ -16,7 +16,7 @@ export const CheckoutForm = ({order}) => {
         price:totalCost,
     }
     useEffect(()=>{
-        fetch('http://localhost:5000/create-payment-intent',{
+        fetch('https://infinite-escarpment-22015.herokuapp.com/create-payment-intent',{
             method:"POST",
             headers:{
                 'content-type':'application/json',
@@ -82,7 +82,7 @@ export const CheckoutForm = ({order}) => {
               setSuccess('Congrats!Your payment is successful.');
               setPaymentLoading(false);
 
-              fetch(`http://localhost:5000/order/${_id}`,{
+              fetch(`https://infinite-escarpment-22015.herokuapp.com/order/${_id}`,{
                   method:'PATCH',
               })
               .then(res => res.json())

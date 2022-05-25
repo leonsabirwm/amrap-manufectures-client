@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 export const Part = ({part}) => {
     const navigate = useNavigate();
 
-    const{image,name,description,price,available,minimun}=part;
+    const{image,name,description,price,available,minimum}=part;
   return (
     <div>
         <div className="card w-max-md bg-base-100 shadow-xl">
@@ -28,7 +28,7 @@ export const Part = ({part}) => {
           <p  className='text-sm'>Avaliable Quantity</p>
       </div>
       <div className='flex items-center justify-center flex-col px-2 lg:px-8 py-4 font-medium'>
-          <h3 className=' text-2xl'>{minimun}</h3>
+          <h3 className=' text-2xl'>{minimum}</h3>
           <p  className='text-sm'>Min q/order</p>
       </div>
      

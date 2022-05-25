@@ -18,7 +18,7 @@ export const User = ({user,refetch}) => {
            
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.put(`http://localhost:5000/user/admin/${email}`)
+                axios.put(`https://infinite-escarpment-22015.herokuapp.com/user/admin/${email}`)
 
                 .then((response) => {
                     refetch()

@@ -19,7 +19,7 @@ export const AddReview = () => {
             review:data.review,
             rating:data.rating,
         }
-        axios.post('http://localhost:5000/reviews',review)
+        axios.post('https://infinite-escarpment-22015.herokuapp.com/reviews',review)
         .then((response) => {
             toast.success("Review Added!!")
             reset();

@@ -7,7 +7,7 @@ export const ManageOrder = ({order,index,refetch}) => {
     const {_id,product,quantity,totalCost,payment,image,shipped} = order;
     const navigate = useNavigate();
     const handleProceed = (id)=>{
-        axios.patch(`http://localhost:5000/order/proceed/${id}`)
+        axios.patch(`https://infinite-escarpment-22015.herokuapp.com/order/proceed/${id}`)
         .then((response) => {
             console.log(response);
            if(response.data.acknowledged){
@@ -34,7 +34,7 @@ export const ManageOrder = ({order,index,refetch}) => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                axios.delete(`http://localhost:5000/orders/${id}`)
+                axios.delete(`https://infinite-escarpment-22015.herokuapp.com/orders/${id}`)
                 .then((response) => {
                     console.log(response);
                     refetch();

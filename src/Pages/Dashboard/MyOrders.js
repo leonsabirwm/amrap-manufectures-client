@@ -10,7 +10,7 @@ export const MyOrders = ({}) => {
     const [user, loading, error] = useAuthState(auth);
     const email = user?.email;
     const{data:orders,isLoading,refetch} = useQuery('my-orders',()=>{
-       return axios.get(`http://localhost:5000/orders/${email}`);
+       return axios.get(`https://infinite-escarpment-22015.herokuapp.com/orders/${email}`);
     })
     console.log(orders?.data)
     if(isLoading || loading){

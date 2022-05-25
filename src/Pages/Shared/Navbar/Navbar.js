@@ -37,7 +37,7 @@ export const Navbar = ({children}) => {
           <Link to='/dashboard/myprofile' className=''>
       <div className='text-white'>{user?<div className="avatar online placeholder  mr-4">
   <div className="bg-sky-500 text-neutral-content rounded-full w-12">
-    <span className="text-xl text-black capitalize">{user.displayName.substring(0,1)}</span>
+    <span className="text-xl text-black capitalize">{user?.displayName.substring(0,1)}</span>
   </div>
 </div> :''}</div>
 </Link>

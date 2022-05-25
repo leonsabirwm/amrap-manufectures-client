@@ -5,7 +5,7 @@ import { Part } from '../Part/Part'
 export const Parts = () => {
     const[parts,setParts] = useState([]);
     useEffect(()=>{
-        axios.get('http://localhost:5000/parts')
+        axios.get('https://infinite-escarpment-22015.herokuapp.com/parts')
         .then((response) => {
             console.log(response);
             setParts(response.data.reverse())
