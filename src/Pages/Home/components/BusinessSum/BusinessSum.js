@@ -11,7 +11,7 @@ export const BusinessSum = () => {
 
   return (
     <div className='my-16'>
-        <div><h2 className='text-4xl font-medium my-12'>We at a glance</h2></div>
+        <div><h2 className='text-4xl font-medium my-12'>We at a Glance</h2></div>
         <div className='grid grid-cols-1 lg:grid-cols-4 gap-8 mx-12'>
         <Dealers></Dealers>
        <Warehouses></Warehouses>

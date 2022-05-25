@@ -1,5 +1,5 @@
 import { signOut } from 'firebase/auth';
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link, NavLink } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify';
@@ -29,7 +29,9 @@ export const Navbar = ({children}) => {
         <h3 className='text-left font-bold text-3xl'>AMRAP</h3>
         <p className='text-left font-medium'>Manufactures</p>
         </div></div>
-        <label htmlFor="my-drawer-2" className="btn text-3xl text-white btn-ghost drawer-button lg:hidden"><MdDashboardCustomize></MdDashboardCustomize></label>
+       {
+          window.location.pathname.includes('/dashboard')? <label htmlFor="my-drawer-2" className="btn text-3xl text-white btn-ghost drawer-button lg:hidden"><MdDashboardCustomize></MdDashboardCustomize></label>:''
+       }
 
       <div className="flex-none hidden lg:block">
         <ul className="menu menu-horizontal flex justify-center items-center text-white">
