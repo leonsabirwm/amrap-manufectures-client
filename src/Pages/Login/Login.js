@@ -33,14 +33,14 @@ export const Login = () => {
     })
     useEffect(()=>{
         if(error||gError){
-            console.log(error.code||gError);
-            if(error.code === 'auth/user-not-found'){
+            console.log(error?.code||gError);
+            if(error?.code === 'auth/user-not-found'){
                 setGeneralError(`User Not Found!!`);
             }
-            if(error.code ==='auth/wrong-password'){
+            if(error?.code ==='auth/wrong-password'){
                 setGeneralError("Wrong Password!!")
             }
-            if(!(error.code === 'auth/user-not-found'||'auth/wrong-password')){
+            if(!(error?.code === 'auth/user-not-found'||'auth/wrong-password')){
                 setGeneralError('Somthing Went Wrong!!')
             }
         }
