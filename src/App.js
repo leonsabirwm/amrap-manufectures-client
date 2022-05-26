@@ -21,6 +21,8 @@ import { ManageProducts } from './Pages/Dashboard/ManageProducts';
 import { ManageOrders } from './Pages/Dashboard/ManageOrders';
 import { Payment } from './Pages/Home/components/Payment/Payment';
 import { RequireAdmin } from './Pages/Shared/RequireAdmin/RequireAdmin';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 
 
 function App() {

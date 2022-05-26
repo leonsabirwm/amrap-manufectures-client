@@ -1,4 +1,5 @@
 import React from 'react'
+import { Carosuel } from './Carosuel'
 import { Banner } from './components/Banner'
 import { BusinessSum } from './components/BusinessSum/BusinessSum'
 import { Footer } from './components/Footer'
@@ -9,9 +10,10 @@ import { DlearshipStore } from './DlearshipStore'
 export const Home = () => {
   return (
     <div>
-        <Banner></Banner>
+        <Carosuel></Carosuel>
         <BusinessSum></BusinessSum>
         <Parts></Parts>
+        <Banner></Banner>
         <Reviews></Reviews>
         <DlearshipStore></DlearshipStore>
         <Footer></Footer>
